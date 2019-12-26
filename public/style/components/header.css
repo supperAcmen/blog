@@ -1,13 +1,12 @@
 .header{
     background-color: #fff;
-
-    padding: .4rem;
     overflow: hidden;
-    height: 2.8rem;
     border-bottom:1px solid #ccc;
+    align-items: center;
 }
 .header-logo{
     color:#1e90ff;
+    padding: .4rem;
     font-size: 1.4rem;
     text-align: left;
 

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 8000"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
@@ -15,5 +15,11 @@
     "next": "9.1.6",
     "react": "16.12.0",
     "react-dom": "16.12.0"
+  },
+  "proxy": {
+    "/apis": {
+        "target": "http://magic.speechnet.cn/index",
+        "changeOrigin": true
+    }
   }
 }
