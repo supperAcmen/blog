@@ -3,6 +3,7 @@
     overflow: hidden;
     border-bottom:1px solid #ccc;
     align-items: center;
+    height: 50px;
 }
 .header-logo{
     color:#1e90ff;

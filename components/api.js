@@ -1,13 +1,15 @@
 import axios from 'axios';
-
+import { Component } from 'react'
+// console.log(httpUrl)
 // 本地跨域处理
-import apiConfig from '../config/api.config'
-
+// import apiConfig from '../config/api.config'
+import httpUrl from '../config/serve.js'
+// console.log(apiConfig)
 // 请求超时时间
 axios.defaults.timeout = 5000;
 // 默认请求url
-axios.defaults.baseURL = 'http://192.168.140.67:3000'
-
+// axios.defaults.baseURL = apiConfig.baseUrl
+axios.defaults.baseURL = httpUrl
 //http response 拦截器
 axios.interceptors.request.use(
     (config) => {
@@ -124,8 +126,7 @@ export function put(url, data = {}) {
     })
 }
 
-
-// Component.prototype.fetch = fetch;
-// Component.prototype.post = post;
-// Component.prototype.patch = patch;
-// Component.prototype.put = put;
+Component.prototype.$fetch = fetch;
+Component.prototype.$post = post;
+Component.prototype.$patch = patch;
+Component.prototype.$put = put;

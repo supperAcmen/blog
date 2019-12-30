@@ -1,32 +1,38 @@
-import React from 'react'
-import { Row, Col } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Row, Col, List, Icon, Affix } from 'antd'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Nav from '../components/nav'
-import { get, post } from "../components/api";
-import serve from "../config/serve";
+import { post, fetch } from '../components/api'
+import '../public/style/pages/index.css'
+import Author from '../components/Author'
+import Advert from '../components/Advert'
 
 const Home = () => {
-  const getRight = () => {
-
-    let data = {};
-    data.data = '{"act":"classifyList"}';
-    post("", data)
+  const getRight = async () => {
+    // let data = {};
+    fetch('/index')
       .then(res => {
-        if (res.code == 1) {
-          this.classify_list = res.data;
-          this.classId = res.data[0].id;
-          this.getgoodsList();
-        } else {
-          // this.$my_message(res.msg, "error");
-        }
+        console.log(res)
+        // return res
       })
       .catch(err => {
         console.log(err)
-        // this.$my_message("数据接收失败,请稍后重试", "error");
-      });
+        // return err
+      })
   }
+
+  useEffect(() => {
+    fetch('/index')
+      .then(res => {
+        console.log(res)
+        // return res
+      })
+      .catch(err => {
+        console.log(err)
+        // return err
+      })
+  }, [])
   return (
     <>
       <Head>
@@ -34,11 +40,21 @@ const Home = () => {
       </Head>
       <Header />
       <Row className="comm-main" type="flex" justify="center">
-        <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}  >
+        <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={18}>
           左侧
         </Col>
-        <Col onClick={getRight} className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
-          右侧
+        <Col
+          // onClick={getRight}
+          className="comm-right"
+          xs={0}
+          sm={0}
+          md={7}
+          lg={5}
+          xl={6}>
+          <Affix offsetTop={50}>
+            <Author />
+            <Advert />
+          </Affix>
         </Col>
       </Row>
       <Footer />
