@@ -14,7 +14,7 @@ axios.defaults.baseURL = httpUrl
 axios.interceptors.request.use(
     (config) => {
         // token
-        config.headers['datacheck'] = localStorage.getItem("token")
+        // config.headers['datacheck'] = localStorage.getItem("token")
         //处理请求前代码
         return config;
     },
@@ -38,6 +38,7 @@ export function fetch(url, params = {}) {
             params: params
         })
             .then(response => {
+                console.log(response)
                 resolve(response.data);
             })
             .catch(err => {

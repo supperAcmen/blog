@@ -9,18 +9,6 @@ import Author from '../components/Author'
 import Advert from '../components/Advert'
 
 const Home = () => {
-  const getRight = async () => {
-    // let data = {};
-    fetch('/index')
-      .then(res => {
-        console.log(res)
-        // return res
-      })
-      .catch(err => {
-        console.log(err)
-        // return err
-      })
-  }
 
   useEffect(() => {
     fetch('/index')

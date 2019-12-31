@@ -7,64 +7,24 @@ import serve from '../config/serve'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Link from 'next/link'
+import { post, fetch } from '../components/api'
 
 const Lists = () => {
-  const [mylist, setMylist] = useState([
-    {
-      title: 'Egg.js',
-      context: 'Egg.js学习详情',
-      img:
-        'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png',
-      heat: '560',
-      tag: '学习',
-      time: '2019-11-20'
-    },
-    {
-      title: 'React.js',
-      context: 'React学习详情',
-      img:
-        'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png',
-      heat: '560',
-      tag: '学习',
-      time: '2019-11-20'
-    },
-    {
-      title: 'Vue.js',
-      context: 'Vue学习详情',
-      img:
-        'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png',
-      heat: '560',
-      tag: '学习',
-      time: '2019-11-20'
-    },
-    {
-      title: 'Vue.js',
-      context: 'Vue学习详情',
-      img:
-        'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png',
-      heat: '560',
-      tag: '学习',
-      time: '2019-11-20'
-    },
-    {
-      title: 'Vue.js',
-      context: 'Vue学习详情',
-      img:
-        'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png',
-      heat: '560',
-      tag: '学习',
-      time: '2019-11-20'
-    },
-    {
-      title: 'Vue.js',
-      context: 'Vue学习详情',
-      img:
-        'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png',
-      heat: '560',
-      tag: '学习',
-      time: '2019-11-20'
-    }
-  ])
+  const [mylist, setMylist] = useState([])
+
+  
+  useEffect(() => {
+    fetch('/index')
+      .then(res => {
+        console.log(res)
+        // setMylist(res)
+        // return res
+      })
+      .catch(err => {
+        console.log(err)
+        // return err
+      })
+  }, [])
 
   return (
     <>
