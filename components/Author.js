@@ -11,7 +11,10 @@ const Author = () => {
         {/* <Avatar size={100} src="http://where.sijia2113.top/timg.jpg" /> */}
       </div>
       <div className="author-introduction">
-        光头程序员，专注于WEB和移动前端开发。
+        <div className="author-name">小徐</div>
+        <div className="introduction-self">
+          光头程序员，专注于WEB和移动前端开发。
+        </div>
         <div>
           <Tag color="magenta">Vue.js</Tag>
           <Tag color="red">React.js</Tag>

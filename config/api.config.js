@@ -1,7 +1,7 @@
 const isPro = Object.is(process.env.NODE_ENV, 'production')
-// console.log(isPro)
-import { httpUrl } from "../config/serve";
+import {Url} from './apiUrl'
+
 module.exports = {
-    baseUrl: isPro ? httpUrl : '/apis'
+    baseUrl: isPro ? Url : '/apis'
     // baseUrl: httpUrl
 }

@@ -32,7 +32,7 @@ const Header = () => {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="life">
-                  <Link href={{ pathname: '/List' }}>
+                  <Link href={{ pathname: '/bibidao' }}>
                     <a>
                       <Icon type="smile" />
                       生活

@@ -3,27 +3,15 @@ import Head from 'next/head'
 import { Row, Col, List, Icon, Breadcrumb, Affix } from 'antd'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import serve from '../config/serve'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Link from 'next/link'
-import { post, fetch } from '../components/api'
 
 const Lists = () => {
   const [mylist, setMylist] = useState([])
 
-  
   useEffect(() => {
-    fetch('/index')
-      .then(res => {
-        console.log(res)
-        // setMylist(res)
-        // return res
-      })
-      .catch(err => {
-        console.log(err)
-        // return err
-      })
+    // console.log(111)
   }, [])
 
   return (
@@ -40,7 +28,6 @@ const Lists = () => {
                 <a href="/">首页</a>
               </Breadcrumb.Item>
               <Breadcrumb.Item>视频列表</Breadcrumb.Item>
-              <Breadcrumb.Item>xxxx</Breadcrumb.Item>
             </Breadcrumb>
           </div>
           <List
