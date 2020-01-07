@@ -41,6 +41,7 @@ export function fetch(url, params = {}) {
         params: params
       })
       .then(response => {
+        // console.log(response.data.data)
         resolve(response.data)
       })
       .catch(err => {

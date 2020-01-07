@@ -8,8 +8,6 @@ import Link from 'next/link'
 import '../public/style/pages/index.css'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
-import axios from 'axios'
-import { serverHttps, apiUrl } from '../config/apiUrl'
 import { fetch } from '../components/api'
 
 import marked from 'marked'

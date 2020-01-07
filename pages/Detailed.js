@@ -45,14 +45,7 @@ const Detailed = (props) =>{
     }
 
   }); 
-
-
-
-    let html = marked(props.article_content) 
-
-
-
-
+  let html = marked(props.article_content)
   return (
     <>
       <Head>
@@ -83,19 +76,15 @@ const Detailed = (props) =>{
 
                 <div className="detailed-content"  
                   dangerouslySetInnerHTML = {{__html:html}}   >
-
-
                 </div>
-
              </div>
-
             </div>
         </Col>
 
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
           <Author />
           <Advert />
-          <Affix offsetTop={5}>
+          <Affix offsetTop={60}>
             <div className="detailed-nav comm-box">
               <div className="nav-title">文章目录</div>
               <div className="toc-list">
@@ -108,7 +97,6 @@ const Detailed = (props) =>{
         </Col>
       </Row>
       <Footer/>
-
    </>
   )
 

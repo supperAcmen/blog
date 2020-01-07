@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../public/style/components/header.css'
-import { Row, Col, Menu, Icon, Affix } from 'antd'
+import { Row, Col, Menu, Icon, Affix, message } from 'antd'
 import Link from 'next/link'
+import { fetch } from '../components/api'
+import Router from 'next/router'
 
 const Header = () => {
+  const [navArray, setNavArray] = useState([])
+
+  const getTypeInfo = async () => {
+    return await fetch('getTypeInfo')
+      .then(res => {
+        setNavArray(res.data)
+      })
+      .catch(err => {
+        message.error('接口不存在')
+        // console.log(err)
+      })
+  }
+  useEffect(() => {
+    getTypeInfo()
+  }, [])
+  // 跳转
+  const handleClick = e => {
+    if (e.key == 0) {
+      Router.push('/index')
+    } else {
+      Router.push('/list?id=' + e.key)
+    }
+  }
   return (
     <>
       <Affix onChange={affixed => console.log(affixed)}>
@@ -14,16 +39,24 @@ const Header = () => {
               <span className="header-txt">专注前端开发,不断学习创新。</span>
             </Col>
             <Col className="memu-div" xs={0} sm={0} md={14} lg={8} xl={6}>
-              <Menu mode="horizontal">
-                <Menu.Item key="home">
+              <Menu mode="horizontal" onClick={handleClick}>
+                <Menu.Item key="0">
                   <Link href={{ pathname: '/' }}>
                     <a>
                       <Icon type="home" />
-                      首页
+                      博客首页
                     </a>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="video">
+                {navArray.map(item => {
+                  return (
+                    <Menu.Item key={item.Id}>
+                      <Icon type={item.icon} />
+                      {item.typeName}
+                    </Menu.Item>
+                  )
+                })}
+                {/* <Menu.Item key="video">
                   <Link href={{ pathname: '/List' }}>
                     <a>
                       <Icon type="youtube" />
@@ -31,6 +64,7 @@ const Header = () => {
                     </a>
                   </Link>
                 </Menu.Item>
+
                 <Menu.Item key="life">
                   <Link href={{ pathname: '/bibidao' }}>
                     <a>
@@ -38,7 +72,7 @@ const Header = () => {
                       生活
                     </a>
                   </Link>
-                </Menu.Item>
+                </Menu.Item> */}
               </Menu>
             </Col>
           </Row>
