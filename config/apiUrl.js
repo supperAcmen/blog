@@ -1,7 +1,7 @@
-let Url = 'http://127.0.0.1:7001/default/'
-let apiUrl = 'http://127.0.0.1:7001/default/'
+let Url = 'http://demo.sijia2113.top/default/'
+let apiUrl = 'http://demo.sijia2113.top/default/'
 let serverHttps = {
-  getInitialProps: `http://127.0.0.1:7001/default/getArticleList`,
-  getListById: `http://127.0.0.1:7001/default/getListById/`,
+  getInitialProps: `http://demo.sijia2113.top/default/getArticleList`,
+  getListById: `http://demo.sijia2113.top/default/getListById/`,
 }
 export { Url, serverHttps,apiUrl }

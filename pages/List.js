@@ -6,16 +6,15 @@ import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Link from 'next/link'
-// import { fetch } from '../components/api'
-import axios from 'axios'
+import { fetch } from '../components/api'
 import { serverHttps, apiUrl } from '../config/apiUrl'
-
+import axios from 'axios'
 import marked from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/monokai-sublime.css'
+import '../static/style/pages/list.css'
 
-const Lists = list => {
-  const [myList, setMyList] = useState([list.data])
+const Lists = props => {
   const renderer = new marked.Renderer()
   marked.setOptions({
     renderer: renderer,
@@ -32,10 +31,11 @@ const Lists = list => {
       return hljs.highlightAuto(code).value
     }
   })
+  const [myList, setMyList] = useState(props.data)
   useEffect(() => {
-    // console.log(list.data)
-    setMyList(list.data)
-  })
+    // let tmpId = props.url.query.id
+    // getList(tmpId)
+  },[])
 
   return (
     <>
@@ -81,8 +81,8 @@ const Lists = list => {
                 <div
                   className="list-context"
                   dangerouslySetInnerHTML={{
-                    __html: item.introduce_html}
-                  }></div>
+                    __html: item.introduce_html
+                  }}></div>
               </List.Item>
             )}
           />

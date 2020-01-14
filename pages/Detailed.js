@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
-import '../public/style/pages/detailed.css'
+import '../static/style/pages/detailed.css'
 import MarkNav from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
 import axios from 'axios'
@@ -19,7 +19,7 @@ import Tocify from '../components/tocify.tsx'
 
 const Detailed = (props) =>{
 
-  let articleContent=props.article_content
+  // let articleContent=props.article_content
 
   const tocify = new Tocify()
   const renderer = new marked.Renderer();
@@ -108,7 +108,7 @@ Detailed.getInitialProps = async(context)=>{
   let id =context.query.id
   const promise = new Promise((resolve)=>{
 
-    axios('http://127.0.0.1:7001/default/getArticleById/'+id).then(
+    axios('http://demo.sijia2113.top/default/getArticleById/'+id).then(
       (res)=>{
         // console.log(title)
         resolve(res.data.data[0])

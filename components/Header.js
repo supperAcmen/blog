@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../public/style/components/header.css'
+import '../static/style/components/header.css'
 import { Row, Col, Menu, Icon, Affix, message } from 'antd'
 import Link from 'next/link'
 import { fetch } from '../components/api'

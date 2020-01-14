@@ -1,5 +1,5 @@
 import { Avatar, Divider, Tooltip, Tag } from 'antd'
-import '../public/style/components/author.css'
+import '../static/style/components/author.css'
 import { post, fetch } from '../components/api'
 const Author = () => {
   const github = <span>prompt github</span>

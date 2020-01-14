@@ -2,22 +2,28 @@ import axios from 'axios'
 import { Component } from 'react'
 import { message } from 'antd'
 
-// console.log(httpUrl)
-// 本地跨域处理
-import apiConfig from '../config/api.config'
-// console.log(apiConfig)
+// http请求头 配置跨域http头 或非跨域HTTP头
+// const isPro = Object.is(process.env.NODE_ENV, 'production')
+let baseUrl = ''
+// if (isPro === 'http://127.0.0.1:7001/default') {
+  baseUrl = 'http://demo.sijia2113.top/default'
+// } else {
+//   baseUrl = '/blog'
+// }
+
 // 请求超时时间
 axios.defaults.timeout = 5000
-import { apiUrl } from '../config/apiUrl'
+// 是否跨域
+axios.defaults.withCredentials = true
 
 // 默认请求url
-// axios.defaults.baseURL = apiConfig.baseUrl
-axios.defaults.baseURL = apiUrl
+axios.defaults.baseURL = baseUrl
 //http response 拦截器
+
 axios.interceptors.request.use(
   config => {
-    // token
     // config.headers['datacheck'] = localStorage.getItem("token")
+    // console.log('request go');
     //处理请求前代码
     return config
   },
@@ -27,12 +33,49 @@ axios.interceptors.request.use(
   }
 )
 
+axios.interceptors.response.use(
+  config => {
+    // Toast.hide()                             // 销毁Toast组件
+    // console.log('response get')
+    return config
+  },
+  err => {
+    // console.log('响应失败')
+    return Promise.reject(err)
+  }
+)
+
 /**
  * 封装get方法
  * @param url
  * @param data
  * @returns {Promise}
  */
+
+axios.interceptors.response.use(
+  response => {
+    // const res = response.data
+    // console.log(response)
+    if (response.status !== 200) {
+      // console.log("response",res)
+      return Promise.reject('接口出错')
+    } else {
+      if (response.data.data.code !== -2) {
+        return response
+      } else {
+        message.error('您尚未登陆,请登陆后查看')
+        localStorage.removeItem('openId')
+        setTimeout(time => {
+          window.location.href = window.location.origin + '/'
+        }, 1500)
+      }
+      // return response
+    }
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
 
 export function fetch(url, params = {}) {
   return new Promise((resolve, reject) => {
@@ -59,28 +102,9 @@ export function fetch(url, params = {}) {
 
 export function post(url, data = {}) {
   return new Promise((resolve, reject) => {
-    // data.data = this.$base64.encode(this.$base64.encode(data.data))
     axios.post(url, data).then(
       response => {
-        // response.data = JSON.parse(this.$base64.decode(this.$base64.decode(response.data)))
-        // console.log(response.data)
-        console.log(url)
-        if (response.data.code == -2) {
-          // console.log(url)
-          // console.log(window.location)
-          localStorage.setItem('user_type', '1')
-          if (localStorage.getItem('token') == null) {
-            // this.$my_message("您尚未登陆,请登陆后查看", "error");
-          } else {
-            // this.$my_message("您的登陆失效,请重新登陆", "error");
-          }
-          setTimeout(time => {
-            window.location.href = window.location.origin + '/#/login'
-          }, 1500)
-        } else {
-          resolve(response.data)
-        }
-        // Toast.clear();
+        resolve(response.data)
       },
       err => {
         reject(err)
