@@ -33,9 +33,21 @@ const Lists = props => {
   })
   const [myList, setMyList] = useState(props.data)
   useEffect(() => {
+    setMyList(props.data)
     // let tmpId = props.url.query.id
     // getList(tmpId)
-  },[])
+  })
+  // const getList = id => {
+  //   fetch('getListById/' + id)
+  //     .then(res => {
+  //       if (res.code === 1) {
+  //         setMyList(res.data)
+  //       }
+  //     })
+  //     .catch(err => {
+  //       message.error('接口不存在')
+  //     })
+  // }
 
   return (
     <>
